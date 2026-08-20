@@ -11,6 +11,7 @@ import {
 import { SKILLS } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const ICONS: Record<string, LucideIcon> = {
   Frontend: Layers,
@@ -20,13 +21,19 @@ const ICONS: Record<string, LucideIcon> = {
 };
 
 export default function Skills() {
+  const { locale } = useLanguage();
+
   return (
     <section id="skills" className="relative py-24 md:py-32">
       <div className="section-container flex flex-col gap-14">
         <SectionHeading
-          eyebrow="Skills"
-          title="My toolkit"
-          description="Technologies and tools I use to bring products to life."
+          eyebrow={locale === "uz" ? "Ko'nikmalar" : "Skills"}
+          title={locale === "uz" ? "Mening Ko'nikmalarim" : "My toolkit"}
+          description={
+            locale === "uz"
+              ? "Mahsulotlarni hayotga olib chiqishda ishlatadigan texnologiyalar va vositalar."
+              : "Technologies and tools I use to bring products to life."
+          }
         />
 
         <motion.div

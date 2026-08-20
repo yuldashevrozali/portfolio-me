@@ -5,6 +5,7 @@ import { ArrowUpRight, Check, Github, Send, Star } from "lucide-react";
 import { PROJECTS, type Project } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { useLanguage } from "@/components/LanguageProvider";
 
 function ProjectVisual({ project }: { project: Project }) {
   return (
@@ -73,22 +74,105 @@ function TechTags({ tech }: { tech: string[] }) {
   );
 }
 
+function getLocalizedProject(project: Project, locale: "uz" | "en") {
+  if (locale !== "uz") return project;
+
+  const translations: Record<string, { description: string; features?: string[] }> = {
+    AvtoQoida: {
+      description:
+        "Haydovchilik qoidalari va trafik topshiriqlarini o'rganish uchun mo'ljallangan keng qamrovli platforma. Interaktiv darslar, real imtihon simulyatsiyasi va taraqqiyotni kuzatish — o'quvchilarga haydovchilik imtihonini ishonch bilan topshirishga yordam beradi. 200+ o'quvchi foydalanadi va hozirda 1 ta driving school tomonidan qo'llanilmoqda.",
+      features: [
+        "Interaktiv darslar",
+        "Real imtihon simulyatsiyasi",
+        "Taraqqiyotni kuzatish",
+      ],
+    },
+    "Dokon — Online Store Platform": {
+      description:
+        "Kichik bizneslar uchun yaratilgan to'liq funksionalli internet-do'kon platformasi. Mahsulot boshqaruvi, buyurtma kuzatuvi va admin paneli mavjud.",
+      features: [
+        "Mahsulot boshqaruvi",
+        "Buyurtma kuzatuvi",
+        "Admin panel",
+      ],
+    },
+    "Akfa Sigma — Door & Window Company": {
+      description:
+        "Eshiklar va derazalar ishlab chiqaruvchi kompaniya uchun korporativ veb-sayt. Mahsulot katalogi, aloqa formalari va sanoat korxonalari uchun yaratilgan zamonaviy dizayn.",
+      features: [
+        "Mahsulot katalogi",
+        "Aloqa formalari",
+        "Zamonaviy sanoat dizayni",
+      ],
+    },
+    "Milliy Sertifikat Bot": {
+      description:
+        "Test markazlari va maktablar uchun Telegram bot. Testlar AI orqali hal etiladi (Rasch Model). Har kim bepul testlar yaratishi mumkin, to'liq admin panel nazorati bilan.",
+      features: [
+        "AI bilan test yechish",
+        "Har kim uchun bepul test yaratish",
+        "To'liq admin panel",
+        "Telegram botlari orqali 200+ foydalanuvchi",
+      ],
+    },
+    "IELTS Zone Farg'ona Bot": {
+      description:
+        "IELTS Zone Farg'ona uchun tavsiya asosidagi Telegram bot. Foydalanuvchilar do'stlarini taklif qilish orqali ochkolar to'playdi va ularni IELTS mock testlari uchun almashadi.",
+      features: [
+        "Avtomatik ballar bilan referal tizim",
+        "TOP foydalanuvchilar reytingi",
+        "Ballarni mock testlarga almashish",
+        "Telegram botlari bo'yicha 3,000+ foydalanuvchi",
+      ],
+    },
+    "Buxoro Xorazm Nukus Taksi Bot": {
+      description:
+        "Shaharlararo taksi buyurtma bot. Yo'lovchilar sayohat ma'lumotlarini yuboradi, buyurtmalar avtomatik tarzda drayverlar guruhlari tomon yuboriladi.",
+      features: [
+        "4 shahar yo'nalishi",
+        "Buyurtmalarni drayverlarga avtomatik yuborish",
+        "Drayver va yo'lovchi statistikasi",
+      ],
+    },
+    "IELTS ZONE Voting Bot": {
+      description:
+        "Ta'lim markazlari uchun rivojlangan ovoz berish boti. O'quvchilar sevimli o'qituvchilar va guruhlar uchun ovoz beradilar, qo'shimcha ovozlar uchun referallar mavjud, TOP 15 reytingi va sovg'alar bo'limi ishlab turibdi.",
+      features: [
+        "Har foydalanuvchi uchun 1 ovoz + referal bonusi",
+        "TOP 15 guruh reytingi",
+        "Sovg'alar va mukofotlar bo'limi",
+        "Telegram botlari bo'yicha 7,000+ foydalanuvchi",
+      ],
+    },
+  };
+
+  return { ...project, ...translations[project.title] };
+}
+
 export default function Projects() {
+  const { locale } = useLanguage();
   const featured = PROJECTS.find((p) => p.featured);
   const web = PROJECTS.filter((p) => !p.featured && p.category === "web");
   const bots = PROJECTS.filter((p) => p.category === "bot");
+  const localizedFeatured = featured ? getLocalizedProject(featured, locale) : null;
+  const localizedWeb = web.map((project) => getLocalizedProject(project, locale));
+  const localizedBots = bots.map((project) => getLocalizedProject(project, locale));
 
   return (
     <section id="projects" className="relative py-24 md:py-32">
       <div className="section-container flex flex-col gap-14">
         <SectionHeading
-          eyebrow="Projects"
-          title="Selected work"
-          description="A collection of products, apps, and bots I've designed and built."
+          eyebrow={locale === "uz" ? "Loyihalar" : "Projects"}
+          title={locale === "uz" ? "Tanlangan ishlar" : "Selected work"}
+          description={
+            locale === "uz"
+              ? "Men yaratgan mahsulotlar, veb-ilovalar va botlar to'plami."
+              : "A collection of products, apps, and bots I've designed and built."
+          }
         />
 
         {/* Featured project */}
-        {featured && (
+        {localizedFeatured && (
           <motion.article
             initial="hidden"
             whileInView="show"
@@ -99,20 +183,21 @@ export default function Projects() {
             className="glass-card group relative grid overflow-hidden rounded-3xl transition-shadow hover:shadow-glow-lg lg:grid-cols-2"
           >
             <div className="relative min-h-[18rem] overflow-hidden lg:min-h-[24rem]">
-              <ProjectVisual project={featured} />
+              <ProjectVisual project={localizedFeatured} />
               <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-background/60 px-3 py-1.5 text-xs font-medium text-amber-300 backdrop-blur-md">
-                <Star size={13} className="fill-amber-300" /> Featured Project
+                <Star size={13} className="fill-amber-300" />
+                {locale === "uz" ? "Tanlangan loyiha" : "Featured Project"}
               </span>
             </div>
 
             <div className="flex flex-col justify-center gap-5 p-8 md:p-10">
-              <h3 className="text-3xl font-bold text-white">{featured.title}</h3>
+              <h3 className="text-3xl font-bold text-white">{localizedFeatured.title}</h3>
               <p className="text-balance leading-relaxed text-white/60">
-                {featured.description}
+                {localizedFeatured.description}
               </p>
-              <TechTags tech={featured.tech} />
+              <TechTags tech={localizedFeatured.tech} />
               <div className="pt-2">
-                <ProjectLinks project={featured} />
+                <ProjectLinks project={localizedFeatured} />
               </div>
             </div>
           </motion.article>
@@ -126,7 +211,7 @@ export default function Projects() {
           variants={staggerContainer}
           className="grid gap-6 md:grid-cols-2"
         >
-          {web.map((project) => (
+          {localizedWeb.map((project) => (
             <motion.article
               key={project.title}
               variants={fadeUp}
@@ -175,7 +260,8 @@ export default function Projects() {
               viewport={viewportOnce}
               className="flex items-center gap-2 text-lg font-semibold text-white/80"
             >
-              <span className="text-xl">🤖</span> Telegram Bots
+              <span className="text-xl">🤖</span>
+              {locale === "uz" ? "Telegram botlari" : "Telegram Bots"}
             </motion.h3>
             <motion.div
               initial="hidden"
@@ -184,7 +270,7 @@ export default function Projects() {
               variants={staggerContainer}
               className="grid gap-6 md:grid-cols-2"
             >
-              {bots.map((bot) => (
+              {localizedBots.map((bot) => (
                 <motion.article
                   key={bot.title}
                   variants={fadeUp}
@@ -235,7 +321,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       className="inline-flex w-fit items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-secondary px-3 py-2 text-sm font-medium text-white shadow-glow transition-transform hover:scale-[1.04]"
                     >
-                      <Send size={14} /> Open Bot
+                      <Send size={14} /> {locale === "uz" ? "Botni ochish" : "Open Bot"}
                     </a>
                   )}
                 </motion.article>

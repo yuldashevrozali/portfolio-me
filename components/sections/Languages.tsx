@@ -5,17 +5,24 @@ import { FileText, Languages as LanguagesIcon } from "lucide-react";
 import { LANGUAGES } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce, EASE } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const IELTS_MAX = 9;
 
 export default function Languages() {
+  const { locale } = useLanguage();
+
   return (
     <section id="languages" className="relative py-24 md:py-32">
       <div className="section-container flex flex-col gap-14">
         <SectionHeading
-          eyebrow="Languages"
-          title="Languages I speak"
-          description="Communicating clearly across languages and cultures."
+          eyebrow={locale === "uz" ? "Tillar" : "Languages"}
+          title={locale === "uz" ? "Menga qanday tillar ma'lum" : "Languages I speak"}
+          description={
+            locale === "uz"
+              ? "Til orqali aniq va qulay muloqot qilish."
+              : "Communicating clearly across languages and cultures."
+          }
         />
 
         <motion.div
@@ -49,7 +56,7 @@ export default function Languages() {
 
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between text-xs text-white/50">
-                  <span>Proficiency</span>
+                  <span>{locale === "uz" ? "Bilim darajasi" : "Proficiency"}</span>
                   {lang.note && <span>{lang.note}</span>}
                 </div>
                 <div className="h-2 overflow-hidden rounded-full bg-white/[0.06]">

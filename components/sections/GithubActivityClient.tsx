@@ -15,6 +15,7 @@ import type { GithubData } from "@/lib/github";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
 import CountUp from "@/components/ui/CountUp";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const LEVEL_COLORS = [
   "rgba(255,255,255,0.05)",
@@ -55,6 +56,7 @@ export default function GithubActivityClient({
   data: GithubData;
   username: string;
 }) {
+  const { locale } = useLanguage();
   const { profile, totalContributions, weeks, topRepos, recent } = data;
   const profileUrl = profile?.htmlUrl ?? `https://github.com/${username}`;
 
@@ -63,8 +65,12 @@ export default function GithubActivityClient({
       <div className="section-container flex flex-col gap-14">
         <SectionHeading
           eyebrow="GitHub"
-          title="My coding activity"
-          description="A live look at what I've been building on GitHub."
+          title={locale === "uz" ? "Mening kodlash faoliyatim" : "My coding activity"}
+          description={
+            locale === "uz"
+              ? "GitHub'da nima ustida ishlayotganim haqida jonli ko'rinish."
+              : "A live look at what I've been building on GitHub."
+          }
         />
 
         <motion.div

@@ -5,15 +5,22 @@ import { Briefcase, GraduationCap } from "lucide-react";
 import { EXPERIENCE } from "@/lib/data";
 import { EASE, viewportOnce } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Experience() {
+  const { locale } = useLanguage();
+
   return (
     <section id="experience" className="relative py-24 md:py-32">
       <div className="section-container flex flex-col gap-14">
         <SectionHeading
-          eyebrow="Experience"
-          title="Experience & Education"
-          description="A timeline of the roles and learning that shaped my craft."
+          eyebrow={locale === "uz" ? "Tajriba" : "Experience"}
+          title={locale === "uz" ? "Tajriba va ta'lim" : "Experience & Education"}
+          description={
+            locale === "uz"
+              ? "Kasbga oid yo'limni shakllantirgan lavhalar va o'rganish bosqichlari."
+              : "A timeline of the roles and learning that shaped my craft."
+          }
         />
 
         <div className="relative mx-auto w-full max-w-3xl">
@@ -28,17 +35,15 @@ export default function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewportOnce}
                 transition={{ duration: 0.6, ease: EASE }}
-                className={`relative flex items-start gap-6 md:w-1/2 ${
-                  i % 2 === 0
+                className={`relative flex items-start gap-6 md:w-1/2 ${i % 2 === 0
                     ? "md:self-start md:pr-12"
                     : "md:translate-x-full md:self-end md:pl-12"
-                }`}
+                  }`}
               >
                 {/* Node */}
                 <span
-                  className={`absolute left-4 top-2 z-10 grid h-8 w-8 -translate-x-1/2 place-items-center rounded-full border border-white/15 bg-card shadow-glow md:left-auto ${
-                    i % 2 === 0 ? "md:-right-4 md:left-auto" : "md:-left-4"
-                  }`}
+                  className={`absolute left-4 top-2 z-10 grid h-8 w-8 -translate-x-1/2 place-items-center rounded-full border border-white/15 bg-card shadow-glow md:left-auto ${i % 2 === 0 ? "md:-right-4 md:left-auto" : "md:-left-4"
+                    }`}
                 >
                   {item.kind === "education" ? (
                     <GraduationCap size={14} className="text-secondary" />
