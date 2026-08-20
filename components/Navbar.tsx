@@ -120,13 +120,13 @@ export default function Navbar() {
             </div>
             <Link
               href="/resume"
-              className="hidden items-center gap-1.5 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:border-white/20 hover:text-white md:inline-flex"
+              className="hidden items-center gap-1.5 whitespace-nowrap rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:border-white/20 hover:text-white md:inline-flex"
             >
               <FileText size={15} /> {locale === "uz" ? "CV" : "Resume"}
             </Link>
             <button
               onClick={() => go("contact")}
-              className="hidden rounded-xl bg-gradient-to-r from-primary to-secondary px-4 py-2 text-sm font-medium text-white shadow-glow transition-transform hover:scale-[1.03] md:inline-flex"
+              className="hidden whitespace-nowrap rounded-xl bg-gradient-to-r from-primary to-secondary px-4 py-2 text-sm font-medium text-white shadow-glow transition-transform hover:scale-[1.03] md:inline-flex"
             >
               {locale === "uz" ? "Bog'lanamiz" : "Let's talk"}
             </button>
