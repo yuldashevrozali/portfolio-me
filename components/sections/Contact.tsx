@@ -12,6 +12,7 @@ import {
   viewportOnce,
 } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { useLanguage } from "@/components/LanguageProvider";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -19,7 +20,33 @@ type Status = "idle" | "sending" | "sent" | "error";
 const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
 export default function Contact() {
+  const { locale } = useLanguage();
   const [status, setStatus] = useState<Status>("idle");
+
+  const isUz = locale === "uz";
+
+  const heading = {
+    eyebrow: isUz ? "Aloqa" : "Contact",
+    title: isUz ? "Biror narsani birga yaratamiz" : "Let's build something",
+    description: isUz
+      ? "Loyihangiz bormi yoki shunchaki salom demoqchimisiz? Mening xatlarim doimo ochiq."
+      : "Have a project in mind or just want to say hi? My inbox is always open.",
+  };
+
+  const labels = {
+    name: isUz ? "Ism" : "Name",
+    email: isUz ? "Email" : "Email",
+    message: isUz ? "Xabar" : "Message",
+    namePlaceholder: isUz ? "Ismingiz" : "Your name",
+    emailPlaceholder: isUz ? "siz@email.com" : "you@email.com",
+    messagePlaceholder: isUz
+      ? "Loyihangiz haqida yozing..."
+      : "Tell me about your project...",
+    send: isUz ? "Xabar yuborish" : "Send Message",
+    sending: isUz ? "Yuborilmoqda..." : "Sending...",
+    sent: isUz ? "Xabar yuborildi!" : "Message sent!",
+    error: isUz ? "Nimadir xato ketdi" : "Something went wrong",
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,9 +84,9 @@ export default function Contact() {
     <section id="contact" className="relative py-24 md:py-32">
       <div className="section-container flex flex-col gap-14">
         <SectionHeading
-          eyebrow="Contact"
-          title="Let's build something"
-          description="Have a project in mind or just want to say hi? My inbox is always open."
+          eyebrow={heading.eyebrow}
+          title={heading.title}
+          description={heading.description}
         />
 
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -113,33 +140,33 @@ export default function Contact() {
             className="glass-card flex flex-col gap-5 rounded-3xl p-7 md:p-8"
           >
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Name" htmlFor="name">
+              <Field label={labels.name} htmlFor="name">
                 <input
                   id="name"
                   name="name"
                   required
-                  placeholder="Your name"
+                  placeholder={labels.namePlaceholder}
                   className="input"
                 />
               </Field>
-              <Field label="Email" htmlFor="email">
+              <Field label={labels.email} htmlFor="email">
                 <input
                   id="email"
                   name="email"
                   type="email"
                   required
-                  placeholder="you@email.com"
+                  placeholder={labels.emailPlaceholder}
                   className="input"
                 />
               </Field>
             </div>
-            <Field label="Message" htmlFor="message">
+            <Field label={labels.message} htmlFor="message">
               <textarea
                 id="message"
                 name="message"
                 required
                 rows={5}
-                placeholder="Tell me about your project..."
+                placeholder={labels.messagePlaceholder}
                 className="input resize-none"
               />
             </Field>
@@ -157,7 +184,7 @@ export default function Contact() {
             >
               {status === "idle" && (
                 <>
-                  Send Message
+                  {labels.send}
                   <ArrowRight
                     size={16}
                     className="transition-transform group-hover:translate-x-1"
@@ -166,17 +193,17 @@ export default function Contact() {
               )}
               {status === "sending" && (
                 <>
-                  <Loader2 size={16} className="animate-spin" /> Sending...
+                  <Loader2 size={16} className="animate-spin" /> {labels.sending}
                 </>
               )}
               {status === "sent" && (
                 <>
-                  <Check size={16} /> Message sent!
+                  <Check size={16} /> {labels.sent}
                 </>
               )}
               {status === "error" && (
                 <>
-                  <AlertCircle size={16} /> Something went wrong
+                  <AlertCircle size={16} /> {labels.error}
                 </>
               )}
             </motion.button>

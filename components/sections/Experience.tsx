@@ -10,6 +10,48 @@ import { useLanguage } from "@/components/LanguageProvider";
 export default function Experience() {
   const { locale } = useLanguage();
 
+  const localizedExperience = EXPERIENCE.map((item) => {
+    if (locale !== "uz") return item;
+
+    const translations: Record<string, { role: string; company: string; description: string }> = {
+      "Freelance Frontend Developer": {
+        role: "Frilanser Frontend Dasturchi",
+        company: "Mustaqil",
+        description:
+          "Mijozlar uchun maxsus veb-ilovalar va Telegram botlarini ishlab chiqaman, jumladan AvtoQoida (avtoqoida.uz) va to'rt ta ishlab chiqarish botlari. Hozirda AvtoQoida platformasini yanada rivojlantirish va takomillashtirish ustida ishlayman.",
+      },
+      "Frontend Developer": {
+        role: "Frontend Dasturchi",
+        company: "MXSOFT",
+        description:
+          "Kuryer marshrutlarini kuzatish uchun yaratilgan ilovada frontend dasturchi sifatida ishladim. Leaflet, JavaScript va React yordamida interaktiv xarita va real-time marshrut vizualizatsiyasi xususiyatlarini ishlab chiqdim.",
+      },
+      "Frontend Teacher": {
+        role: "Frontend O'qituvchisi",
+        company: "Unco Academy",
+        description:
+          "20+ talabalarga frontend dasturlash asoslarini o'rgatdim: HTML, CSS va JavaScript yaxshi amaliyotlari, amaliy loyihalar ustida ishlash va shaxsiy fikr-mulohazalar yordamida ularning rivojlanishiga ko'mak berdim.",
+      },
+      Teacher: {
+        role: "O'qituvchi",
+        company: "RISHTSOFT — Onlayn O'quv Markazi",
+        description:
+          "Talabalar bilan onlayn darslar olib bordim, ularning ta'lim jarayoniga ko'maklashdim, kurs materiallarini ishlab chiqib berdim va jamoa bilan birga onlayn ta'lim sifati oshirishga hissa qo'shdim.",
+      },
+      "Frontend Development Course": {
+        role: "Frontend Dasturlash Kursi",
+        company: "Najot Ta'lim",
+        description:
+          "Farg'onada Frontend Dasturlash bo'yicha keng qamrovli kursni yakunladim. Jamoa bilan birga bir nechta loyihalar qurib, HTML, CSS, JavaScript va React bo'yicha amaliy tajribaga ega bo'ldim.",
+      },
+    };
+
+    return {
+      ...item,
+      ...translations[item.role],
+    };
+  });
+
   return (
     <section id="experience" className="relative py-24 md:py-32">
       <div className="section-container flex flex-col gap-14">
@@ -28,7 +70,7 @@ export default function Experience() {
           <div className="absolute left-4 top-2 h-full w-px bg-gradient-to-b from-primary/60 via-white/10 to-transparent md:left-1/2" />
 
           <div className="flex flex-col gap-10">
-            {EXPERIENCE.map((item, i) => (
+            {localizedExperience.map((item, i) => (
               <motion.div
                 key={`${item.company}-${i}`}
                 initial={{ opacity: 0, y: 40 }}

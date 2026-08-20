@@ -5,15 +5,33 @@ import { Award, ExternalLink } from "lucide-react";
 import { CERTIFICATES } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/animations";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Certificates() {
+  const { locale } = useLanguage();
+
+  const localizedCerts = CERTIFICATES.map((cert) => {
+    if (locale !== "uz") return cert;
+
+    return {
+      ...cert,
+      title: "Frontend Dasturlashni tamomlash sertifikati",
+      issuer: "Najot Ta'lim, O'zbekiston",
+      year: "Aprel 2024",
+    };
+  });
+
   return (
     <section id="certificates" className="relative py-24 md:py-32">
       <div className="section-container flex flex-col gap-14">
         <SectionHeading
-          eyebrow="Certificates"
-          title="Credentials"
-          description="Continuous learning is part of the craft."
+          eyebrow={locale === "uz" ? "Sertifikatlar" : "Certificates"}
+          title={locale === "uz" ? "Hisobga olinadigan ma'lumotlar" : "Credentials"}
+          description={
+            locale === "uz"
+              ? "Doimiy o'rganish va rivojlanish jarayonining ajralmas qismi."
+              : "Continuous learning is part of the craft."
+          }
         />
 
         <motion.div
@@ -23,7 +41,7 @@ export default function Certificates() {
           variants={staggerContainer}
           className="mx-auto grid w-full max-w-3xl gap-5 sm:grid-cols-2"
         >
-          {CERTIFICATES.map((cert) => (
+          {localizedCerts.map((cert) => (
             <motion.div
               key={cert.title}
               variants={fadeUp}

@@ -185,22 +185,22 @@ export default function Hero() {
 
               <div className="mt-8 space-y-3">
                 <div className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
-                  <span className="text-sm text-white/50">Status</span>
+                  <span className="text-sm text-white/50">{locale === "uz" ? "Holat" : "Status"}</span>
                   <span className="flex items-center gap-2 text-sm font-medium text-emerald-400">
                     <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-                    Available for work
+                    {locale === "uz" ? "Ishga tayyor" : "Available for work"}
                   </span>
                 </div>
                 <div className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
-                  <span className="text-sm text-white/50">Focus</span>
+                  <span className="text-sm text-white/50">{locale === "uz" ? "Yo'nalish" : "Focus"}</span>
                   <span className="text-sm font-medium text-white/90">
-                    Web & Telegram Bots
+                    {locale === "uz" ? "Veb-saytlar va Telegram botlari" : "Web & Telegram Bots"}
                   </span>
                 </div>
                 <div className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
-                  <span className="text-sm text-white/50">Based in</span>
+                  <span className="text-sm text-white/50">{locale === "uz" ? "Manzil" : "Based in"}</span>
                   <span className="text-sm font-medium text-white/90">
-                    Uzbekistan 🇺🇿
+                    {locale === "uz" ? "O'zbekiston 🇺🇿" : "Uzbekistan 🇺🇿"}
                   </span>
                 </div>
               </div>
