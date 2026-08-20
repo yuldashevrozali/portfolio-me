@@ -128,7 +128,7 @@ export default function Navbar() {
               onClick={() => go("contact")}
               className="hidden rounded-xl bg-gradient-to-r from-primary to-secondary px-4 py-2 text-sm font-medium text-white shadow-glow transition-transform hover:scale-[1.03] md:inline-flex"
             >
-              {locale === "uz" ? "Bog'lanamiz" : "Let&apos;s talk"}
+              {locale === "uz" ? "Bog'lanamiz" : "Let's talk"}
             </button>
             <button
               onClick={() => setOpen((v) => !v)}
