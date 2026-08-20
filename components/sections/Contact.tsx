@@ -176,11 +176,10 @@ export default function Contact() {
               disabled={status === "sending"}
               whileHover={{ scale: status === "sending" ? 1 : 1.02 }}
               whileTap={{ scale: status === "sending" ? 1 : 0.98 }}
-              className={`ripple group relative mt-1 inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl px-6 py-3.5 font-medium text-white shadow-glow transition-shadow hover:shadow-[0_0_45px_-8px_rgba(139,92,246,0.7)] disabled:opacity-90 ${
-                status === "error"
+              className={`ripple group relative mt-1 inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl px-6 py-3.5 font-medium text-white shadow-glow transition-shadow hover:shadow-[0_0_45px_-8px_rgba(139,92,246,0.7)] disabled:opacity-90 ${status === "error"
                   ? "bg-gradient-to-r from-red-500 to-rose-600"
                   : "bg-gradient-to-r from-primary to-secondary"
-              }`}
+                }`}
             >
               {status === "idle" && (
                 <>

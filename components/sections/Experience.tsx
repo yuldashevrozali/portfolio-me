@@ -78,8 +78,8 @@ export default function Experience() {
                 viewport={viewportOnce}
                 transition={{ duration: 0.6, ease: EASE }}
                 className={`relative flex items-start gap-6 md:w-1/2 ${i % 2 === 0
-                    ? "md:self-start md:pr-12"
-                    : "md:translate-x-full md:self-end md:pl-12"
+                  ? "md:self-start md:pr-12"
+                  : "md:translate-x-full md:self-end md:pl-12"
                   }`}
               >
                 {/* Node */}
