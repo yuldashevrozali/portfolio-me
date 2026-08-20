@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { HERO } from "@/lib/data";
 import { EASE } from "@/lib/animations";
 import Button from "@/components/ui/Button";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const container = {
   hidden: {},
@@ -19,6 +20,20 @@ const item = {
 };
 
 export default function Hero() {
+  const { locale } = useLanguage();
+  const heroText = {
+    greeting: locale === "uz" ? "Salom" : "Hello",
+    welcome: locale === "uz" ? "Veb-saytimga xush kelibsiz" : "Welcome to my corner of the web",
+    iam: locale === "uz" ? "Men" : "I'm",
+    role: locale === "uz" ? "Frontend Developer" : "Frontend Developer",
+    tagline:
+      locale === "uz"
+        ? "Men zamonaviy veb-ilovalar va Telegram botlarni yarataman."
+        : "I build modern web applications and Telegram Bots.",
+    viewProjects: locale === "uz" ? "Loyihalarni ko'rish" : "View Projects",
+    contactMe: locale === "uz" ? "Bog'lanish" : "Contact Me",
+    resume: locale === "uz" ? "CV" : "Resume",
+  };
   // Parallax for the avatar card
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -60,7 +75,7 @@ export default function Hero() {
             className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm text-white/70"
           >
             <span className="text-lg">👋</span>
-            {HERO.greeting}, welcome to my corner of the web
+            {heroText.greeting}, {heroText.welcome}
           </motion.span>
 
           <div className="space-y-2">
@@ -68,7 +83,7 @@ export default function Hero() {
               variants={item}
               className="text-lg font-medium text-white/60"
             >
-              I&apos;m
+              {heroText.iam}
             </motion.p>
             <motion.h1
               variants={item}
@@ -80,7 +95,7 @@ export default function Hero() {
               variants={item}
               className="pt-1 text-2xl font-semibold tracking-tight text-white/90 sm:text-3xl md:text-4xl"
             >
-              {HERO.role}
+              {heroText.role}
             </motion.h2>
           </div>
 
@@ -88,12 +103,12 @@ export default function Hero() {
             variants={item}
             className="max-w-md text-balance text-lg leading-relaxed text-white/50"
           >
-            {HERO.tagline}
+            {heroText.tagline}
           </motion.p>
 
           <motion.div variants={item} className="flex flex-wrap gap-3 pt-1">
             <Button href="#projects">
-              View Projects
+              {heroText.viewProjects}
               <ArrowRight
                 size={16}
                 className="transition-transform duration-300 group-hover:translate-x-1"
@@ -101,11 +116,11 @@ export default function Hero() {
             </Button>
             <Button href="#contact" variant="ghost">
               <Mail size={16} />
-              Contact Me
+              {heroText.contactMe}
             </Button>
             <Button href="/resume" variant="ghost">
               <FileText size={16} />
-              Resume
+              {heroText.resume}
             </Button>
           </motion.div>
 

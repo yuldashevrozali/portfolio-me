@@ -1,12 +1,13 @@
 "use client";
 
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { FileText, Menu, X } from "lucide-react";
+import { FileText, Globe, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { NAV_LINKS } from "@/lib/data";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { EASE } from "@/lib/animations";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const SECTION_IDS = NAV_LINKS.map((l) => l.id);
 
@@ -15,6 +16,14 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const active = useActiveSection(SECTION_IDS);
   const { scrollY } = useScroll();
+  const { locale, setLocale } = useLanguage();
+  const navLabels = {
+    home: locale === "uz" ? "Asosiy" : "Home",
+    about: locale === "uz" ? "Men haqimda" : "About",
+    projects: locale === "uz" ? "Loyihalar" : "Projects",
+    skills: locale === "uz" ? "Ko'nikmalar" : "Skills",
+    contact: locale === "uz" ? "Aloqa" : "Contact",
+  };
 
   useMotionValueEvent(scrollY, "change", (y) => {
     setScrolled(y > 40);
@@ -41,11 +50,10 @@ export default function Navbar() {
             width: scrolled ? "min(56rem, 100%)" : "min(64rem, 100%)",
           }}
           transition={{ duration: 0.4, ease: EASE }}
-          className={`flex items-center justify-between gap-4 rounded-2xl px-4 md:px-6 transition-[background,border,box-shadow] duration-500 ${
-            scrolled
-              ? "border border-white/10 bg-background/70 shadow-card backdrop-blur-xl"
-              : "border border-transparent bg-transparent"
-          }`}
+          className={`flex items-center justify-between gap-4 rounded-2xl px-4 md:px-6 transition-[background,border,box-shadow] duration-500 ${scrolled
+            ? "border border-white/10 bg-background/70 shadow-card backdrop-blur-xl"
+            : "border border-transparent bg-transparent"
+            }`}
         >
           {/* Logo */}
           <button
@@ -79,7 +87,7 @@ export default function Navbar() {
                       active === link.id ? "text-white" : undefined
                     }
                   >
-                    {link.label}
+                    {navLabels[link.id as keyof typeof navLabels] ?? link.label}
                   </span>
                 </button>
               </li>
@@ -88,17 +96,39 @@ export default function Navbar() {
 
           {/* CTA + mobile toggle */}
           <div className="flex items-center gap-2">
+            <div className="hidden items-center gap-1 rounded-xl border border-white/10 bg-white/[0.04] p-1 md:flex">
+              <button
+                onClick={() => setLocale("uz")}
+                className={`rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors ${locale === "uz"
+                  ? "bg-primary text-white"
+                  : "text-white/60 hover:text-white"
+                  }`}
+                aria-label="Set language to Uzbek"
+              >
+                UZ
+              </button>
+              <button
+                onClick={() => setLocale("en")}
+                className={`rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors ${locale === "en"
+                  ? "bg-primary text-white"
+                  : "text-white/60 hover:text-white"
+                  }`}
+                aria-label="Set language to English"
+              >
+                EN
+              </button>
+            </div>
             <Link
               href="/resume"
               className="hidden items-center gap-1.5 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:border-white/20 hover:text-white md:inline-flex"
             >
-              <FileText size={15} /> Resume
+              <FileText size={15} /> {locale === "uz" ? "CV" : "Resume"}
             </Link>
             <button
               onClick={() => go("contact")}
               className="hidden rounded-xl bg-gradient-to-r from-primary to-secondary px-4 py-2 text-sm font-medium text-white shadow-glow transition-transform hover:scale-[1.03] md:inline-flex"
             >
-              Let&apos;s talk
+              {locale === "uz" ? "Bog'lanamiz" : "Let&apos;s talk"}
             </button>
             <button
               onClick={() => setOpen((v) => !v)}
@@ -170,13 +200,12 @@ export default function Navbar() {
                   >
                     <button
                       onClick={() => go(link.id)}
-                      className={`w-full rounded-xl px-4 py-3 text-left text-base font-medium transition-colors ${
-                        active === link.id
-                          ? "bg-white/[0.06] text-white"
-                          : "text-white/60 hover:text-white"
-                      }`}
+                      className={`w-full rounded-xl px-4 py-3 text-left text-base font-medium transition-colors ${active === link.id
+                        ? "bg-white/[0.06] text-white"
+                        : "text-white/60 hover:text-white"
+                        }`}
                     >
-                      {link.label}
+                      {navLabels[link.id as keyof typeof navLabels] ?? link.label}
                     </button>
                   </motion.li>
                 ))}
@@ -191,7 +220,7 @@ export default function Navbar() {
                     onClick={() => setOpen(false)}
                     className="flex w-full items-center gap-2 rounded-xl px-4 py-3 text-left text-base font-medium text-white/60 transition-colors hover:text-white"
                   >
-                    <FileText size={17} /> Resume
+                    <FileText size={17} /> {locale === "uz" ? "CV" : "Resume"}
                   </Link>
                 </motion.li>
               </motion.ul>

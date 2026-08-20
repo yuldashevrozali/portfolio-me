@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Code2, Rocket } from "lucide-react";
 import Image from "next/image";
 import { ABOUT } from "@/lib/data";
+import { useLanguage } from "@/components/LanguageProvider";
 import {
   fadeUp,
   slideLeft,
@@ -15,13 +16,26 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import CountUp from "@/components/ui/CountUp";
 
 export default function About() {
+  const { locale } = useLanguage();
+  const paragraphs =
+    locale === "uz"
+      ? [
+        "Men Farg'ona, O'zbekistondan bo'lgan Junior Frontend Developer bo'lib, tez, zamonaviy va foydalanuvchi qulay veb-tajribalar yaratishga qaratilganman. Frontend Development ta'limini Najot Ta'limda tamomlaganman va real loyihalarda ishlash tajribam bor.",
+        "Hozir men freelance developer sifatida veb-ilovalar va Telegram botlarni yarataman, jumladan AvtoQoida. Shuningdek, MXSOFTda kuryer kuzatuvchi ilovada ishladim va 20+ talabalarga frontend dasturlashni o'rgatdim.",
+      ]
+      : ABOUT.paragraphs;
+
   return (
     <section id="about" className="relative py-24 md:py-32">
       <div className="section-container flex flex-col gap-14">
         <SectionHeading
-          eyebrow="About"
-          title="A bit about me"
-          description="Turning ideas into fast, elegant, and reliable digital products."
+          eyebrow={locale === "uz" ? "Men haqimda" : "About"}
+          title={locale === "uz" ? "Bir oz mening haqimda" : "A bit about me"}
+          description={
+            locale === "uz"
+              ? "Tez, zamonaviy va ishonchli raqamli mahsulotlarni yaratishga qaratilganman."
+              : "Turning ideas into fast, elegant, and reliable digital products."
+          }
         />
 
         <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr]">
@@ -73,7 +87,7 @@ export default function About() {
               </span>
             </div>
 
-            {ABOUT.paragraphs.map((p, i) => (
+            {paragraphs.map((p, i) => (
               <p key={i} className="text-balance leading-relaxed text-white/60">
                 {p}
               </p>
