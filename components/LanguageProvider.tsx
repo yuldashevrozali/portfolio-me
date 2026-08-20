@@ -28,11 +28,11 @@ export function useLanguage() {
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-    const [locale, setLocaleState] = useState<Locale>("uz");
+    const [locale, setLocaleState] = useState<Locale>("en");
 
     useEffect(() => {
         const stored = window.localStorage.getItem("portfolio-locale") as Locale | null;
-        const initial = stored === "uz" || stored === "en" ? stored : "uz";
+        const initial = stored === "uz" || stored === "en" ? stored : "en";
         setLocaleState(initial);
     }, []);
 
