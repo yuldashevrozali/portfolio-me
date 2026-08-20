@@ -35,13 +35,14 @@ export const HERO = {
     "Firebase",
     "Node.js",
     "Telegram Bot",
+    "Postman",
   ],
 };
 
 export const ABOUT = {
   paragraphs: [
-    "I'm a Junior Frontend Developer from Fergana, Uzbekistan, passionate about building fast, accessible, and delightful web experiences. I completed the Frontend Development course at Najot Ta'lim, where I worked on real team projects and gained hands-on experience with modern web technologies.",
-    "Today I work as a freelance frontend developer, building custom web applications and Telegram Bots for clients — including AvtoQoida (avtoqoida.uz), which I'm actively developing. Previously I worked at MXSOFT on a courier route-tracking app with Leaflet, and I've taught frontend development to 20+ students at Unco Academy and RISHTSOFT. I'm always eager to learn and grow as a developer.",
+    "I'm a Junior Frontend Developer from Fergana, Uzbekistan, focused on building fast, modern, and user-friendly web experiences. I completed my Frontend Development training at Najot Ta'lim and have experience working on real-world projects.",
+    "I currently work as a freelance developer, building web applications and Telegram bots, including AvtoQoida. I've also worked with MXSOFT on a courier tracking app and taught frontend development to 20+ students.",
   ],
   stats: [
     { label: "Projects", value: 7, suffix: "+" },
@@ -60,28 +61,28 @@ export const SKILLS: SkillCategory[] = [
   {
     title: "Frontend",
     skills: [
-      "HTML5",
-      "CSS3",
-      "SCSS",
-      "JavaScript",
       "React",
-      "Redux",
       "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "Tailwind CSS",
+      "Redux",
+      "HTML/CSS",
       "Leaflet",
-      "Responsive Design",
+      "Material UI (MUI)",
     ],
   },
   {
     title: "Backend",
-    skills: ["Node.js", "REST API", "Telegram Bot API"],
+    skills: ["Python", "Node.js", "REST API", "Telegram Bot API"],
   },
   {
     title: "Database",
-    skills: ["Firebase", "MongoDB"],
+    skills: ["SQL / PostgreSQL", "Firebase", "MongoDB"],
   },
   {
     title: "Tools",
-    skills: ["Git", "GitHub", "VS Code", "Vercel"],
+    skills: ["Git", "GitHub", "VS Code", "Vercel", "Postman"],
   },
 ];
 
@@ -102,7 +103,7 @@ export const PROJECTS: Project[] = [
   {
     title: "AvtoQoida",
     description:
-      "A comprehensive platform for driving rules and traffic-test preparation. Interactive lessons, real exam simulations, and progress tracking — designed to help learners pass their driving exam with confidence.",
+      "A comprehensive platform for driving rules and traffic-test preparation. Interactive lessons, real exam simulations, and progress tracking — designed to help learners pass their driving exam with confidence. Used by 200+ learners and currently adopted by 1 driving school.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase", "Framer Motion"],
     demo: "https://avtoqoida.uz",
     featured: true,
@@ -149,6 +150,7 @@ export const PROJECTS: Project[] = [
       "AI (Rasch Model) test solving",
       "Free test creation for all",
       "Full admin panel",
+      "200+ users across Telegram bots.",
     ],
     demo: "https://t.me/MS_TEST_FizMat_bot",
     category: "bot",
@@ -164,6 +166,7 @@ export const PROJECTS: Project[] = [
       "Referral system with auto points",
       "TOP users leaderboard",
       "Exchange points for mock tests",
+      "3,000+ users across Telegram bots.",
     ],
     demo: "https://t.me/ielts_zone_fergana_bot",
     category: "bot",
@@ -194,6 +197,7 @@ export const PROJECTS: Project[] = [
       "1 vote per user + referral bonus",
       "TOP 15 group leaderboard",
       "Gifts & rewards section",
+      "7,000+ users across Telegram bots.",
     ],
     demo: "https://t.me/IELTS_ZONE_votingbot",
     category: "bot",
@@ -266,12 +270,6 @@ export const CERTIFICATES: Certificate[] = [
     issuer: "Najot Ta'lim, Uzbekistan",
     year: "April 2024",
   },
-  {
-    title: "IELTS Academic — Overall Band 5.0 (B1)",
-    issuer: "British Council / IDP / Cambridge",
-    year: "2026",
-    certificate: "/ielts-certificate.pdf",
-  },
 ];
 
 export type Language = {
@@ -295,17 +293,9 @@ export const LANGUAGES: Language[] = [
   },
   {
     name: "English",
-    level: "IELTS Academic — Overall 5.0",
-    proficiency: 62,
+    level: "Intermediate",
+    proficiency: 72,
     flag: "🇬🇧",
-    cefr: "B1",
-    certificate: "/ielts-certificate.pdf",
-    scores: [
-      { label: "Listening", value: "4.5" },
-      { label: "Reading", value: "5.0" },
-      { label: "Writing", value: "5.0" },
-      { label: "Speaking", value: "5.5" },
-    ],
   },
 ];
 

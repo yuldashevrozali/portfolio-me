@@ -111,9 +111,7 @@ export default function ResumeDocument() {
                     {lang.flag} {lang.name}
                   </span>
                   <span className="block text-xs text-white/55 print:text-black/60">
-                    {lang.name === "English"
-                      ? `IELTS 5.0 · CEFR ${lang.cefr}`
-                      : lang.level}
+                    {lang.level}
                   </span>
                 </li>
               ))}
