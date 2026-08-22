@@ -14,12 +14,12 @@ export default function Footer() {
         <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       </div>
 
-      <div className="section-container mt-10 flex flex-col items-center justify-between gap-6 md:flex-row">
-        <div className="flex items-center gap-2">
+      <div className="section-container mt-10 flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
+        <div className="flex flex-wrap items-center justify-center gap-2 md:justify-start">
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-secondary text-sm font-black text-white">
             R
           </span>
-          <span className="text-sm text-white/50">
+          <span className="text-xs text-white/50 sm:text-sm">
             © {year} Ro&apos;zalibek. Crafted with care.
           </span>
         </div>

@@ -67,9 +67,9 @@ export default function Experience() {
 
         <div className="relative mx-auto w-full max-w-3xl">
           {/* Vertical line */}
-          <div className="absolute left-4 top-2 h-full w-px bg-gradient-to-b from-primary/60 via-white/10 to-transparent md:left-1/2" />
+          <div className="absolute left-3 top-2 h-full w-px bg-gradient-to-b from-primary/60 via-white/10 to-transparent sm:left-4 md:left-1/2" />
 
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-8 sm:gap-10">
             {localizedExperience.map((item, i) => (
               <motion.div
                 key={`${item.company}-${i}`}
@@ -77,14 +77,14 @@ export default function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewportOnce}
                 transition={{ duration: 0.6, ease: EASE }}
-                className={`relative flex items-start gap-6 md:w-1/2 ${i % 2 === 0
+                className={`relative flex items-start gap-4 sm:gap-6 md:w-1/2 ${i % 2 === 0
                   ? "md:self-start md:pr-12"
                   : "md:translate-x-full md:self-end md:pl-12"
                   }`}
               >
                 {/* Node */}
                 <span
-                  className={`absolute left-4 top-2 z-10 grid h-8 w-8 -translate-x-1/2 place-items-center rounded-full border border-white/15 bg-card shadow-glow md:left-auto ${i % 2 === 0 ? "md:-right-4 md:left-auto" : "md:-left-4"
+                  className={`absolute left-3 top-2 z-10 grid h-7 w-7 -translate-x-1/2 place-items-center rounded-full border border-white/15 bg-card shadow-glow sm:h-8 sm:w-8 md:left-auto ${i % 2 === 0 ? "md:-right-4 md:left-auto" : "md:-left-4"
                     }`}
                 >
                   {item.kind === "education" ? (
@@ -94,7 +94,7 @@ export default function Experience() {
                   )}
                 </span>
 
-                <div className="glass-card ml-10 flex-1 rounded-2xl p-6 md:ml-0">
+                <div className="glass-card ml-8 flex-1 rounded-2xl p-4 sm:ml-10 sm:p-6 md:ml-0">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <h3 className="text-lg font-semibold text-white">
                       {item.role}

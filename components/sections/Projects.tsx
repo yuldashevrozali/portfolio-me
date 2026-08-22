@@ -182,7 +182,7 @@ export default function Projects() {
             transition={{ type: "spring", stiffness: 260, damping: 24 }}
             className="glass-card group relative grid overflow-hidden rounded-3xl transition-shadow hover:shadow-glow-lg lg:grid-cols-2"
           >
-            <div className="relative min-h-[18rem] overflow-hidden lg:min-h-[24rem]">
+            <div className="relative min-h-[16rem] overflow-hidden sm:min-h-[18rem] lg:min-h-[24rem]">
               <ProjectVisual project={localizedFeatured} />
               <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-background/60 px-3 py-1.5 text-xs font-medium text-amber-300 backdrop-blur-md">
                 <Star size={13} className="fill-amber-300" />
@@ -190,8 +190,8 @@ export default function Projects() {
               </span>
             </div>
 
-            <div className="flex flex-col justify-center gap-5 p-8 md:p-10">
-              <h3 className="text-3xl font-bold text-white">{localizedFeatured.title}</h3>
+            <div className="flex flex-col justify-center gap-5 p-5 sm:p-6 md:p-8 lg:p-10">
+              <h3 className="text-2xl font-bold text-white sm:text-3xl">{localizedFeatured.title}</h3>
               <p className="text-balance leading-relaxed text-white/60">
                 {localizedFeatured.description}
               </p>
@@ -222,8 +222,8 @@ export default function Projects() {
               <div className="relative h-48 overflow-hidden">
                 <ProjectVisual project={project} />
               </div>
-              <div className="flex flex-1 flex-col gap-4 p-6">
-                <h3 className="text-xl font-semibold text-white">
+              <div className="flex flex-1 flex-col gap-4 p-5 sm:p-6">
+                <h3 className="text-lg font-semibold text-white sm:text-xl">
                   {project.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-white/55">
@@ -276,7 +276,7 @@ export default function Projects() {
                   variants={fadeUp}
                   whileHover={{ y: -8, rotate: -0.5 }}
                   transition={{ type: "spring", stiffness: 280, damping: 22 }}
-                  className="glass-card group flex flex-col gap-4 rounded-2xl p-6 transition-shadow hover:shadow-glow"
+                  className="glass-card group flex flex-col gap-4 rounded-2xl p-5 transition-shadow hover:shadow-glow sm:p-6"
                 >
                   <div className="flex items-center gap-4">
                     <div

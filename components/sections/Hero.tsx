@@ -60,9 +60,9 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center pt-28 md:pt-24"
+      className="relative flex min-h-screen items-center pt-24 sm:pt-28 md:pt-24"
     >
-      <div className="section-container grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="section-container grid items-center gap-8 sm:gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
         {/* Left column */}
         <motion.div
           variants={container}
@@ -87,13 +87,13 @@ export default function Hero() {
             </motion.p>
             <motion.h1
               variants={item}
-              className="text-balance text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl"
+              className="text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
             >
               <span className="gradient-text-primary">{HERO.name}</span>
             </motion.h1>
             <motion.h2
               variants={item}
-              className="pt-1 text-2xl font-semibold tracking-tight text-white/90 sm:text-3xl md:text-4xl"
+              className="pt-1 text-xl font-semibold tracking-tight text-white/90 sm:text-2xl md:text-3xl lg:text-4xl"
             >
               {heroText.role}
             </motion.h2>
@@ -101,7 +101,7 @@ export default function Hero() {
 
           <motion.p
             variants={item}
-            className="max-w-md text-balance text-lg leading-relaxed text-white/50"
+            className="max-w-md text-balance text-base leading-relaxed text-white/50 sm:text-lg"
           >
             {heroText.tagline}
           </motion.p>

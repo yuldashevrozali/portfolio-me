@@ -35,7 +35,7 @@ export default function ResumeDocument() {
   return (
     <div className="min-h-screen bg-background py-10 print:bg-white print:py-0">
       {/* Screen-only toolbar */}
-      <div className="no-print mx-auto mb-8 flex max-w-3xl items-center justify-between px-6">
+      <div className="no-print mx-auto mb-8 flex max-w-3xl flex-col items-start justify-between gap-3 px-4 sm:flex-row sm:items-center sm:px-6">
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"

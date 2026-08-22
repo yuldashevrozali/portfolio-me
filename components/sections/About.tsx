@@ -38,7 +38,7 @@ export default function About() {
           }
         />
 
-        <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10">
           {/* Image / visual card */}
           <motion.div
             initial="hidden"

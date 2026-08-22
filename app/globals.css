@@ -32,6 +32,12 @@ body {
   font-feature-settings: "cv11", "ss01";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+html {
   overflow-x: hidden;
 }
 
@@ -46,14 +52,17 @@ body {
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: #09090b;
 }
+
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #3b82f6, #8b5cf6);
   border-radius: 999px;
   border: 2px solid #09090b;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #60a5fa, #a78bfa);
 }
@@ -88,7 +97,7 @@ body {
   }
 
   .section-container {
-    @apply mx-auto w-full max-w-6xl px-6 md:px-8;
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 md:px-8;
   }
 
   .noise {
@@ -110,18 +119,18 @@ body {
     position: relative;
     overflow: hidden;
   }
+
   .ripple::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-      circle at var(--ripple-x, 50%) var(--ripple-y, 50%),
-      rgba(255, 255, 255, 0.25) 0%,
-      transparent 45%
-    );
+    background: radial-gradient(circle at var(--ripple-x, 50%) var(--ripple-y, 50%),
+        rgba(255, 255, 255, 0.25) 0%,
+        transparent 45%);
     opacity: 0;
     transition: opacity 0.5s ease;
   }
+
   .ripple:active::after {
     opacity: 1;
     transition: opacity 0s;
